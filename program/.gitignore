@@ -1,0 +1,11 @@
+# Local files/directories
+/local
+
+# Config file
+/config.yaml
+
+# IDEA IDE
+/.idea
+
+# tmp
+/tmp
