@@ -1,5 +1,0 @@
-package dock
-
-func Get() {
-
-}
