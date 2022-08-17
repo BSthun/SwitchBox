@@ -4,7 +4,8 @@ import (
 	"github.com/rivo/tview"
 
 	"github.com/bsthun/switchbox/program/modules/dashboard"
-	"github.com/bsthun/switchbox/program/types/common"
+	"github.com/bsthun/switchbox/program/modules/dock"
+	"github.com/bsthun/switchbox/program/types/ctx"
 	"github.com/bsthun/switchbox/program/wrappers/interactive"
 )
 
@@ -18,20 +19,22 @@ func Entrypoint() {
 	pages := tview.NewPages()
 
 	// * Initialize context
-	context := &common.Context{
+	context := &ctx.Context{
 		App:         App,
 		Pages:       pages,
 		CurrentPage: "list",
 	}
 
 	pages.AddPage("dashboard", dashboard.Page(context), true, true)
+	pages.AddPage("dock", dock.Page(context), true, true)
 
 	list := tview.NewList().
 		AddItem("Dashboard", "System dashboard", '1', func() {
-			context.CurrentPage = "dashboard"
-			pages.SwitchToPage("dashboard")
+			context.Navigate("dashboard")
 		}).
-		AddItem("Dock", "Manage macOS Dock arrangement", '2', nil).
+		AddItem("Dock", "Manage macOS Dock arrangement", '2', func() {
+			context.Navigate("dock")
+		}).
 		AddItem("Quit", "", 'q', func() {
 			App.Stop()
 		})

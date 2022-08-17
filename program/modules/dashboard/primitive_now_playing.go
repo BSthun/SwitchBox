@@ -12,13 +12,13 @@ import (
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 
-	"github.com/bsthun/switchbox/program/types/common"
+	"github.com/bsthun/switchbox/program/types/ctx"
 )
 
 //go:embed embed_music_osascript.scpt
 var NowPlayingMusicOsaScript string
 
-func NowPlayingPrimitive(context *common.Context) tview.Primitive {
+func NowPlayingPrimitive(context *ctx.Context) tview.Primitive {
 	musics := NowPlayingGetMusic()
 	return tview.NewBox().SetBorder(true).SetTitle(" Now Playing ").SetDrawFunc(func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		flex := tview.NewFlex().SetDirection(tview.FlexRow).
@@ -38,7 +38,7 @@ func NowPlayingPrimitive(context *common.Context) tview.Primitive {
 
 var NowPlayingWaveTicker *time.Ticker
 
-func NowPlayingWavePrimitive(context *common.Context) tview.Primitive {
+func NowPlayingWavePrimitive(context *ctx.Context) tview.Primitive {
 	draw := func(screen tcell.Screen, x, y, width, height int) (int, int, int, int) {
 		var waves []int
 		for i := 0; i < width; i++ {
