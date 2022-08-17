@@ -12,14 +12,14 @@ import (
 func loadConfigFile() (cfg *config) {
 	// * Read YAML configuration file
 	var yml []byte
-	if y, _err := ioutil.ReadFile("config.yml"); _err != nil {
-		interactive.Throw(val.DefaultTag, "UNABLE TO READ YAML CONFIGURATION FILE", _err)
+	if y, err := ioutil.ReadFile("config.yml"); err != nil {
+		interactive.Throw(val.DefaultTag, "UNABLE TO READ YAML CONFIGURATION FILE", err, nil)
 	} else {
 		yml = y
 	}
 
-	if _err := yaml.Unmarshal(yml, cfg); _err != nil {
-		interactive.Throw(val.DefaultTag, "UNABLE TO PARSE YAML CONFIGURATION FILE", _err)
+	if err := yaml.Unmarshal(yml, cfg); err != nil {
+		interactive.Throw(val.DefaultTag, "UNABLE TO PARSE YAML CONFIGURATION FILE", err, nil)
 	}
 
 	return

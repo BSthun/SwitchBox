@@ -3,10 +3,10 @@ package dashboard
 import (
 	"github.com/rivo/tview"
 
-	"github.com/bsthun/switchbox/program/types/common"
+	"github.com/bsthun/switchbox/program/types/ctx"
 )
 
-func Page(context *common.Context) tview.Primitive {
+func Page(context *ctx.Context) tview.Primitive {
 	flex := tview.NewFlex().SetDirection(tview.FlexRow).
 		AddItem(TitleLinePrimitive(), 2, 0, false).
 		AddItem(StatusLinePrimitive(), 2, 0, false).
